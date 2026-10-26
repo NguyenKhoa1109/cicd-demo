@@ -13,7 +13,6 @@ public class MathUtilTest {
 
     @Test
     public void testAddFail() {
-        // Cố tình viết sai để CI/CD bắt lỗi
-        assertEquals(10, math.add(2, 3), "Cố tình lỗi để show Report");
+        assertEquals(10, math.add(7, 3), "7 + 3 phải bằng 10");
     }
 }
