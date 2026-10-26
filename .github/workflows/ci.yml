@@ -9,7 +9,7 @@ permissions:
   checks: write
 
 jobs:
-  build-test-report:
+  build-test-report-deploy:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
@@ -32,3 +32,13 @@ jobs:
         name: Unit Test Results
         path: target/surefire-reports/TEST-*.xml
         reporter: java-junit
+
+    # --- 2 BƯỚC DEPLOY MỚI THÊM VÀO DƯỚI ĐÂY ---
+    - name: Build (Đóng gói project thành file JAR)
+      run: mvn package -DskipTests
+
+    - name: Deploy (Tải file JAR lên GitHub Artifacts)
+      uses: actions/upload-artifact@v4
+      with:
+        name: math-util-release
+        path: target/*.jar
